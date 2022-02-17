@@ -4,13 +4,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document("vender_user")
+@Document("app_user")
 public class VenderUser {
 
 	@Id
-	private String id;
-
-	@Field
 	private String email;
 	@Field
 	private String firstName;
@@ -19,19 +16,59 @@ public class VenderUser {
 	@Field
 	private String password;
 	@Field
-	private boolean exist = true;
+	private boolean active = false;
+
+	@Field
+	private String role;
+
+	@Field
+	private PersonalDetails personalDetails;
+	@Field
+	private BankDetails bankDetails;
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public PersonalDetails getPersonalDetails() {
+		return personalDetails;
+	}
+
+	public void setPersonalDetails(PersonalDetails personalDetails) {
+		this.personalDetails = personalDetails;
+	}
+
+	public BankDetails getBankDetails() {
+		return bankDetails;
+	}
+
+	public void setBankDetails(BankDetails bankDetails) {
+		this.bankDetails = bankDetails;
+	}
 
 	public boolean isExist() {
-		return exist;
+		return active;
 	}
 
 	public void setExist(boolean exist) {
-		this.exist = exist;
+		this.active = exist;
 	}
 
 	public VenderUser(boolean exist) {
 		super();
-		this.exist = exist;
+		this.active = exist;
 	}
 
 	public VenderUser() {
@@ -44,14 +81,6 @@ public class VenderUser {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getEmail() {

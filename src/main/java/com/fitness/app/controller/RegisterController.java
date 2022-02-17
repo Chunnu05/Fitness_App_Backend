@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fitness.app.entity.VenderUser;
+import com.fitness.app.model.UserModel;
 import com.fitness.app.service.RegisterService;
 
 @RestController
@@ -18,8 +19,8 @@ public class RegisterController {
 	private RegisterService registerService;
 
 	@PostMapping("/register/vendor")
-	public VenderUser registerAVender(@RequestBody VenderUser venderUser) {
-		return registerService.registerAVender(venderUser);
+	public VenderUser registerAVender(@RequestBody UserModel userModel) {
+		return registerService.registerAVender(userModel);
 	}
 
 	@GetMapping("/venders")
