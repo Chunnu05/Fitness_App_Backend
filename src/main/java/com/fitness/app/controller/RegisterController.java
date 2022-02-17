@@ -13,24 +13,18 @@ import com.fitness.app.service.RegisterService;
 
 @RestController
 public class RegisterController {
-	
+
 	@Autowired
 	private RegisterService registerService;
-	
-	@PostMapping("/register/vender")
-	public VenderUser registerAVender(@RequestBody VenderUser venderUser)
-	{
+
+	@PostMapping("/register/vendor")
+	public VenderUser registerAVender(@RequestBody VenderUser venderUser) {
 		return registerService.registerAVender(venderUser);
 	}
-	
-	
+
 	@GetMapping("/venders")
-	public List<VenderUser> getAllVenders()
-	{
+	public List<VenderUser> getAllVenders() {
 		return registerService.getAllVenders();
 	}
-	
-	
-	
 
 }
