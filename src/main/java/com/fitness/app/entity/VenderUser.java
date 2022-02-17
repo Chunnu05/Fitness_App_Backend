@@ -4,11 +4,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document("app_user")
+@Document("vender_user")
 public class VenderUser {
 
 	@Id
+	private String id;
+	@Field
 	private String email;
+
 	@Field
 	private String firstName;
 	@Field
@@ -26,61 +29,38 @@ public class VenderUser {
 	@Field
 	private BankDetails bankDetails;
 
-	public boolean isActive() {
-		return active;
+	public VenderUser() {
 	}
 
-	public void setActive(boolean active) {
+	public VenderUser(boolean active) {
 		this.active = active;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public PersonalDetails getPersonalDetails() {
-		return personalDetails;
-	}
-
-	public void setPersonalDetails(PersonalDetails personalDetails) {
-		this.personalDetails = personalDetails;
-	}
-
-	public BankDetails getBankDetails() {
-		return bankDetails;
-	}
-
-	public void setBankDetails(BankDetails bankDetails) {
-		this.bankDetails = bankDetails;
-	}
-
-	public boolean isExist() {
-		return active;
-	}
-
-	public void setExist(boolean exist) {
-		this.active = exist;
-	}
-
-	public VenderUser(boolean exist) {
-		super();
-		this.active = exist;
-	}
-
-	public VenderUser() {
-		super();
-	}
-
-	public VenderUser(String email, String firstName, String lastName, String password) {
-
+	public VenderUser(String email, String firstName, String lastName, String password, boolean active, String role,
+			PersonalDetails personalDetails, BankDetails bankDetails) {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
+		this.active = active;
+		this.role = role;
+		this.personalDetails = personalDetails;
+		this.bankDetails = bankDetails;
+	}
+
+	public VenderUser(String email, String firstName, String lastName, String password) {
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -113,6 +93,38 @@ public class VenderUser {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public PersonalDetails getPersonalDetails() {
+		return personalDetails;
+	}
+
+	public void setPersonalDetails(PersonalDetails personalDetails) {
+		this.personalDetails = personalDetails;
+	}
+
+	public BankDetails getBankDetails() {
+		return bankDetails;
+	}
+
+	public void setBankDetails(BankDetails bankDetails) {
+		this.bankDetails = bankDetails;
 	}
 
 }

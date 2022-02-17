@@ -2,8 +2,9 @@ package com.fitness.app.service;
 
 import java.util.List;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import com.fitness.app.entity.VenderUser;
@@ -16,23 +17,20 @@ public class RegisterService {
 	@Autowired
 	private RegisterRepository registerRepository;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
 	// register new vender service function.
 	public VenderUser registerAVender(UserModel userModel) {
 
 		VenderUser user = registerRepository.findByEmail(userModel.getEmail());
-		if (user != null) {
-			return new VenderUser(false);
+		if (user!= null) {
+			return new VenderUser(true);
 		}
 		VenderUser venderUser = new VenderUser();
 		venderUser.setEmail(userModel.getEmail());
 		venderUser.setFirstName(userModel.getFirstName());
 		venderUser.setLastName(userModel.getLastName());
-		venderUser.setPassword(passwordEncoder.encode(userModel.getPassword()));
+		venderUser.setPassword(encryptPassword(userModel.getPassword()));
 		venderUser.setRole("VENDER");
-		venderUser.setActive(false);
+		venderUser.setActive(true);
 		venderUser.setBankDetails(null);
 		venderUser.setPersonalDetails(null);
 
@@ -43,4 +41,15 @@ public class RegisterService {
 	public List<VenderUser> getAllVenders() {
 		return registerRepository.findAll();
 	}
+	
+	public static String encryptPassword(String inputPassword) {
+	    StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+	    return encryptor.encryptPassword(inputPassword);
+	}
+	
+	public static boolean checkPassword(String inputPassword, String encryptedStoredPassword) {
+	    StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+	    return encryptor.checkPassword(inputPassword, encryptedStoredPassword);
+	}
+	
 }
