@@ -21,8 +21,13 @@ public class RegisterService {
 	public VenderUser registerAVender(UserModel userModel) {
 
 		VenderUser user = registerRepository.findByEmail(userModel.getEmail());
+<<<<<<< HEAD
 		if (user != null) {
 			return new VenderUser(true);
+=======
+		if (user!= null) {
+			return new VenderUser(true, false);
+>>>>>>> 71671ecbde7f89b8061b58c84b3c2053c5d90685
 		}
 		VenderUser venderUser = new VenderUser();
 		venderUser.setEmail(userModel.getEmail());
