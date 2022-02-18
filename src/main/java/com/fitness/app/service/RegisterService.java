@@ -21,8 +21,10 @@ public class RegisterService {
 	public VenderUser registerAVender(UserModel userModel) {
 
 		VenderUser user = registerRepository.findByEmail(userModel.getEmail());
-		if (user!= null) {
+
+		if (user != null) {
 			return new VenderUser(true, false);
+
 		}
 		VenderUser venderUser = new VenderUser();
 		venderUser.setEmail(userModel.getEmail());
@@ -41,15 +43,16 @@ public class RegisterService {
 	public List<VenderUser> getAllVenders() {
 		return registerRepository.findAll();
 	}
-	
+
 	public static String encryptPassword(String inputPassword) {
-	    StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
-	    return encryptor.encryptPassword(inputPassword);
+		StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+		return encryptor.encryptPassword(inputPassword);
 	}
-	
+
 	public static boolean checkPassword(String inputPassword, String encryptedStoredPassword) {
-	    StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
-	    return encryptor.checkPassword(inputPassword, encryptedStoredPassword);
+		StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+
+		return encryptor.checkPassword(inputPassword, encryptedStoredPassword);
 	}
-	
+
 }

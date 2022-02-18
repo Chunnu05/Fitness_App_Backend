@@ -6,8 +6,6 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class LoginService {
 
@@ -16,8 +14,8 @@ public class LoginService {
 
     public VenderUser login(String email, String password) {
         VenderUser user = repository.findByEmail(email);
-        if(user!=null){
-            if(checkPassword(password, user.getPassword())){
+        if (user != null) {
+            if (checkPassword(password, user.getPassword())) {
                 return user;
 
             }
