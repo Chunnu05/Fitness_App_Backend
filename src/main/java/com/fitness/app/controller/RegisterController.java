@@ -19,7 +19,6 @@ public class RegisterController {
 	@Autowired
 	private RegisterService registerService;
 
-	@CrossOrigin(origins = "http://localhost:8080")
 	@PostMapping("/register/vendor")
 	public VenderUser registerAVender(@RequestBody UserModel userModel) {
 		return registerService.registerAVender(userModel);
