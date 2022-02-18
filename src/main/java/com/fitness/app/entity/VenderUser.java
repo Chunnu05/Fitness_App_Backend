@@ -19,7 +19,10 @@ public class VenderUser {
 	@Field
 	private String password;
 	@Field
-	private boolean active = false;
+	private boolean active = true;
+
+	@Field
+	private boolean loggedIn =false;
 
 	@Field
 	private String role;
@@ -32,8 +35,10 @@ public class VenderUser {
 	public VenderUser() {
 	}
 
-	public VenderUser(boolean active) {
+	public VenderUser(boolean active, boolean loggedIn) {
+
 		this.active = active;
+		this.loggedIn=loggedIn;
 	}
 
 	public VenderUser(String email, String firstName, String lastName, String password, boolean active, String role,

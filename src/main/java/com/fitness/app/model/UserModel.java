@@ -14,6 +14,12 @@ public class UserModel {
         this.password = password;
     }
 
+    public UserModel(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+
     public String getEmail() {
         return email;
     }
