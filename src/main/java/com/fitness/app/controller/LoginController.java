@@ -16,7 +16,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    
     @PostMapping("/login/vendor")
     public VenderUser login(@RequestBody LoginUserModel user) {
         return loginService.login(user.getEmail(), user.getPassword());
