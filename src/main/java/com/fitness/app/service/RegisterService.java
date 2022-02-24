@@ -6,7 +6,6 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.fitness.app.entity.VenderUser;
 import com.fitness.app.model.UserModel;
@@ -24,7 +23,7 @@ public class RegisterService {
 		VenderUser user = registerRepository.findByEmail(userModel.getEmail());
 
 		if (user != null) {
-			return new VenderUser(true, false);
+			return new VenderUser(null, true, false);
 
 		}
 		VenderUser venderUser = new VenderUser();
@@ -34,10 +33,9 @@ public class RegisterService {
 		venderUser.setPassword(encryptPassword(userModel.getPassword()));
 		venderUser.setRole("VENDER");
 		venderUser.setActive(true);
-		venderUser.setBankDetails(null);
-		venderUser.setPersonalDetails(null);
-		venderUser.setGymDetails(null);
-		venderUser.setProfilePic(null);
+		venderUser.setLoggedIn(true);
+		
+		
 
 		return registerRepository.save(venderUser);
 
@@ -59,7 +57,10 @@ public class RegisterService {
 	}
 	
 	
-	//Uploading Pic------------------
+	//Uploading pic------------------
+	
+	
+
 	
 	
 }

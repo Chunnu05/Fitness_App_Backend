@@ -7,8 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,26 +25,18 @@ public class VenderUser {
 	@Field
 	private String password;
 	@Field
-	private boolean active = true;
+	private boolean active ;
 
 	@Field
-	private boolean loggedIn =false;
+	private boolean loggedIn;
 
 	@Field
 	private String role;
 
-	@Field
-	private PersonalDetails personalDetails;
-	@Field
-	private BankDetails bankDetails;
 
-	@Field
-	private Gym gymDetails;
-	@Field
-	private ImageFile profilePic;
+	public VenderUser(String email, boolean active, boolean loggedIn) {
 
-	public VenderUser(boolean active, boolean loggedIn) {
-
+		this.email=email;
 		this.active = active;
 		this.loggedIn=loggedIn;
 	}
