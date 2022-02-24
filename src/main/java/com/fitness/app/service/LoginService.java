@@ -16,11 +16,12 @@ public class LoginService {
         VenderUser user = repository.findByEmail(email);
         if (user != null) {
             if (checkPassword(password, user.getPassword())) {
-                return user;
+            	
+                return new VenderUser(user.getEmail(), user.isActive(),  user.isLoggedIn());
 
             }
         }
-        return new VenderUser(false, false);
+        return new VenderUser(null, false, false);
 
     }
 
